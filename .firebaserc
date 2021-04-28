@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "sb-labs-12c9b": {
+      "hosting": {
+        "sbLabsDemo": [
+          "sb-labs-12c9b"
+        ]
+      }
+    }
+  }
+}
