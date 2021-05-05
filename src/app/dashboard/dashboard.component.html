@@ -9,11 +9,17 @@
 <button class="btn btn-success" (click)="addUser(user)">Add User</button>
 
 <input [(ngModel)]="search" placeholder="search"/>
-<table class="table">
+
+<div class="form-group">
+  <label>Search for users in DB</label>
+  <input [(ngModel)]="searchQuery" placeholder="Search for users" (ngModelChange)="searchField($event)"/>
+<!--  <button class="btn btn-primary" (click)="searchForUsersInApi()">Search</button>-->
+</div>
+<table class="table" *ngIf="usersList$ | async as users">
   <tr *ngFor="let u of users | filterUsers:search">
     <td>{{u.id}}</td>
     <td>{{u.name | uppercase}}</td>
     <td>{{u.email}}</td>
-    <td>{{u.dateAdded | date:'short'}}</td>
+    <td>{{u.dateAdded.toDate() | date:'short'}}</td>
   </tr>
 </table>
