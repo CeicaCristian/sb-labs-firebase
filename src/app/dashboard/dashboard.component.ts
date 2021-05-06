@@ -15,10 +15,12 @@ export class DashboardComponent implements OnInit {
   public users: User[] = [];
   public usersList$: Observable<any> = new Observable<any>();
   public search: string = "";
+  // DEBOUNCE HTTP REQUESTS
   public searchQuery: string = "";
   public searchQueryChanged: Subject<string> = new Subject<string>();
 
   constructor(private firestoreService: FirestoreService) {
+    // for each new value emitted, debounceTime method from rxjs will add 3s before setting the new value to the search string and calling the method wich will make the request to the API
     this.searchQueryChanged.pipe(debounceTime(3000)).subscribe(model => {
       this.searchQuery = model;
       this.searchForUsersInApi();
@@ -49,12 +51,14 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  searchField(value: string) {
-    this.searchQueryChanged.next(value);
+  public searchFieldModified(newValue: string) {
+    // each time the search field modifies, the new value will be passed to the subscriber
+    this.searchQueryChanged.next(newValue);
   }
 
-  searchForUsersInApi() {
-    console.log('called')
+  public searchForUsersInApi() {
+    // this will be the actual request to the API
+    console.log('request API to search for  users: ')
     console.log(this.searchQuery);
   }
 

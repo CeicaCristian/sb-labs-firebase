@@ -10,11 +10,14 @@
 
 <input [(ngModel)]="search" placeholder="search"/>
 
+<!-- DEBOUNCE HTTP -->
 <div class="form-group">
-  <label>Search for users in DB</label>
-  <input [(ngModel)]="searchQuery" placeholder="Search for users" (ngModelChange)="searchField($event)"/>
-<!--  <button class="btn btn-primary" (click)="searchForUsersInApi()">Search</button>-->
+  <label>Search for users in external API</label>
+  <input [(ngModel)]="searchQuery" placeholder="Search for users" (ngModelChange)="searchFieldModified($event)"/>
+  <!-- This is bad Ui/UX because the user will need to click the button each time he wants to submit the search -->
+  <!--<button class="btn btn-primary" (click)="searchForUsersInApi()">Search</button>-->
 </div>
+
 <table class="table" *ngIf="usersList$ | async as users">
   <tr *ngFor="let u of users | filterUsers:search">
     <td>{{u.id}}</td>
