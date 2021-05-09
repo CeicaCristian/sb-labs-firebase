@@ -15,6 +15,9 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {ProfileComponent} from './profile/profile.component';
 import {LoadingComponent} from './loading/loading.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {FirestoreService} from "./services/firestore.service";
+import {AuthService} from "./services/auth.service";
+import {BrowserDynamicTestingModule} from "@angular/platform-browser-dynamic/testing";
 
 @NgModule({
   declarations: [
@@ -33,9 +36,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     AngularFirestoreModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    BrowserDynamicTestingModule
   ],
-  providers: [AuthGuardService],
+  providers: [AuthGuardService, FirestoreService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,3 +1,4 @@
+<h1 *ngIf="showTitle">{{title}}</h1>
 <div class="form-group">
   <label>Name</label>
   <input class="form-control" [(ngModel)]="user.name"/>
@@ -23,6 +24,5 @@
     <td>{{u.id}}</td>
     <td>{{u.name | uppercase}}</td>
     <td>{{u.email}}</td>
-    <td>{{u.dateAdded.toDate() | date:'short'}}</td>
   </tr>
 </table>
